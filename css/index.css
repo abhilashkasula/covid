@@ -60,3 +60,66 @@ body {
 .delta {
   opacity: 0.6;
 }
+
+#states {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.state {
+  display: flex;
+  justify-content: space-between;
+  background-color:  rgba(108, 117, 125, 0.09);
+  width: 25em;
+  padding: .6em 1.3em;
+  border-radius: 3px;
+  margin: 0.3em;
+}
+
+.state > * {
+  margin: 0.5em;
+}
+
+.confirmed-text {
+  color: rgba(255, 5, 55, 1);
+}
+
+.active-text {
+  color: rgba(0, 123, 255, 1);
+}
+
+.deceased-text {
+  color: rgba(108, 117, 125, 1);
+}
+
+.recovered-text {
+  color: rgba(40, 167, 69, 1);
+}
+
+.state-header {
+  background-color: rgba(108, 117, 125, 0.2);
+  padding: 0.5em 1em;
+}
+
+.value {
+  font-weight: 600;
+}
+
+table {
+  text-align: end;
+  min-width: 6em;
+}
+
+footer {
+  margin-top: 5em;
+  text-align: center;
+}

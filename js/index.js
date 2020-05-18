@@ -50,8 +50,57 @@ const drawTotalStats = function (data, state = 'Telangana') {
   total.innerHTML += generateLabels('Recovered', recoveredDelta, recovered);
 };
 
+const getStateCount = function(districts) {
+  return districts.reduce((total, dist) => {
+    total.c += dist.confirmed;
+    total.cd += dist.delta.confirmed;
+    total.a += dist.active;
+    total.d += dist.deceased;
+    total.dd += dist.delta.deceased;
+    total.r += dist.recovered;
+    total.rd += dist.delta.recovered;
+    return total;
+  }, {c:0, cd:0, a:0, ad:0, d:0, dd:0, r:0, rd:0})
+};
+
+const generateStates = function(state) {
+  const getDelta = (n) => n ? `[+${n}]` : '';
+  const {c, cd, a, ad, d, dd, r, rd} = getStateCount(state.districtData);
+  return `
+  <div class="state">
+    <h2 class="state-name">${state.state}</h2>
+    <table>
+      <tr>
+        <td class="confirmed-text value"><span class="delta">${getDelta(cd)} </span>${c}</td>
+      </tr>
+      <tr>
+      <td class="active-text value"><span class="delta">${getDelta(ad)} </span>12</td>
+      </tr>
+      <tr>
+      <td class="deceased-text value"><span class="delta">[+12] </span>12</td>
+      </tr>
+      <tr>
+      <td class="recovered-text value"><span class="delta">[+12] </span>12</td>
+      </tr>
+    </table>
+  </div>
+`
+}
+
+const drawStates = function(data) {
+  const html = data.map(generateStates).join('');
+  document.querySelector('#states').innerHTML = html;
+  Array.from(document.querySelectorAll('.state')).forEach(s => {
+    s.addEventListener('click', () => {
+      const name = event.target.innerText;
+      showDistricts(data, name);
+    })
+  })
+};
+
 const drawInfo = function(data) {
   drawTotalStats(data);
+  drawStates(data);
 };
 
 const main = function () {
