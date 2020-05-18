@@ -122,7 +122,6 @@ const drawDistricts = function(data, zones, state) {
       <th class="recovered-text">Rcvrd</th>
     </thead>
     <tbody>`
-  console.log(districts)
   html += districts.sort(descend).map(district => generateDistrict(district, zones)).join('');
   html += '</tbody></table>';
   elem.classList.remove('hide');
