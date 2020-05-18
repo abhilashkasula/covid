@@ -140,3 +140,7 @@ footer img {
   height: 1.5em;
   margin-bottom: -0.3em;
 }
+
+footer > a:hover {
+  background-color: rgba(40, 167, 69, 0.3);
+}
