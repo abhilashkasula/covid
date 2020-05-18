@@ -120,7 +120,6 @@ const drawDistricts = function(data, zones, state) {
     <tbody>`
   html += districts.map(district => generateDistrict(district, zones)).join('');
   html += '</tbody></table>';
-  console.log(elem)
   elem.classList.remove('hide');
   elem.innerHTML = html;
 };
