@@ -134,6 +134,8 @@ table {
 footer {
   margin-top: 3em;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
@@ -142,7 +144,7 @@ footer img {
   margin-bottom: -0.3em;
 }
 
-footer > a:hover {
+footer > .github:hover {
   background-color: rgba(40, 167, 69, 0.3);
 }
 
@@ -208,4 +210,33 @@ h2 {
 
 .state {
   cursor: pointer;
+}
+
+.top {
+  text-decoration: none;
+  color: rgba(0, 123, 255, 1);
+  background-color: rgba(0, 123, 255, 0.2);
+  border-radius: 0.3em;
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 0.7em 5.1em;
+  margin-bottom: 1em;
+}
+
+.link {
+  text-decoration: none;
+  color: rgba(108, 117, 125, 1);
+  background-color: rgba(108, 117, 125, 0.2);
+  font-weight: 600;
+  font-size: 1.2em;
+  padding: 0.7em 2.4em;
+  margin-top: 1em;
+}
+
+footer > .top:hover {
+  background-color: rgba(0, 123, 255, 0.4);
+}
+
+footer > .link:hover {
+  background-color: rgba(108, 117, 125, 0.4);
 }
