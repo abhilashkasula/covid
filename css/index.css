@@ -159,3 +159,7 @@ footer > a:hover {
 .hide {
   display: none;
 }
+
+h2 {
+  opacity: 0.78;
+}
