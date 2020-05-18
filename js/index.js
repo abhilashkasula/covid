@@ -178,6 +178,7 @@ const main = function () {
   fetch('https://api.covid19india.org/v2/state_district_wise.json')
     .then((res) => res.json())
     .then(fetchZones);
+  setTimeout(main, 1200000);
 };
 
 window.onload = main;
