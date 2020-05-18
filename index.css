@@ -1,0 +1,62 @@
+body {
+  font-family: monospace;
+}
+
+.header {
+  text-align: center;
+}
+
+.total {
+  display: flex;
+  flex-direction: column;
+}
+
+.cases {
+  margin: 0;
+  margin-top: 0.5em;
+  text-align: center;
+}
+
+#india-total {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#india-total > div{
+  margin: 1em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.confirmed {
+  background-color: rgba(255, 5, 55, 0.2);
+  color: rgba(255, 5, 55, 1);
+}
+
+.active {
+  background-color: rgba(0, 123, 255, 0.2);
+  color: rgba(0, 123, 255, 1);
+}
+
+.deceased {
+  background-color: rgba(108, 117, 125, 0.2);
+  color: rgba(108, 117, 125, 1);
+}
+
+.recovered {
+  background-color: rgba(40, 167, 69, 0.2);
+  color: rgba(40, 167, 69, 1);
+}
+
+.total {
+  padding: 0.6em 2em;
+  border-radius: 0.2em;
+}
+
+.delta {
+  opacity: 0.6;
+}
