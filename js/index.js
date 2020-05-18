@@ -87,8 +87,14 @@ const generateStates = function(state) {
 `
 }
 
+const sortOnConfirmedCases = (a, b) => {
+  const {c: confirmedA} = getStateCount(a.districtData);
+  const {c: confirmedB} = getStateCount(b.districtData);
+  return confirmedA > confirmedB ? -1 : confirmedA < confirmedB ? 1 : 0;
+};
+
 const drawStates = function(data) {
-  const html = data.map(generateStates).join('');
+  const html = data.sort(sortOnConfirmedCases).map(generateStates).join('');
   document.querySelector('#states').innerHTML = html;
   Array.from(document.querySelectorAll('.state')).forEach(s => {
     s.addEventListener('click', () => {
