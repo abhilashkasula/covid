@@ -96,17 +96,30 @@ const sortOnConfirmedCases = (a, b) => {
 const drawStates = function(data) {
   const html = data.sort(sortOnConfirmedCases).map(generateStates).join('');
   document.querySelector('#states').innerHTML = html;
+};
+
+const addListeners = function(data) {
   Array.from(document.querySelectorAll('.state')).forEach(s => {
     s.addEventListener('click', () => {
       const name = event.target.innerText;
       showDistricts(data, name);
-    })
-  })
+    });
+  });
+
+  document.querySelector('#search').addEventListener('input', () => {
+    const states = Array.from(document.querySelectorAll('.state'));
+    const text = event.target.value;
+    states.forEach(s => s.classList.add('hide'));
+    const regEx = new RegExp(text, 'i');
+    const matched = states.filter(s => s.children[0].innerText.match(regEx))
+    matched.forEach(s => s.classList.remove('hide'))
+  });
 };
 
 const drawInfo = function(data) {
   drawTotalStats(data);
   drawStates(data);
+  addListeners(data);
 };
 
 const main = function () {
