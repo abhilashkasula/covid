@@ -190,6 +190,7 @@ h2 {
   padding: 0.8em 0.4em;
   border-radius: 0.2em;
   text-align: left;
+  color: rgb(61, 67, 72);
 }
 
 .state-info .col {
@@ -203,4 +204,8 @@ h2 {
   text-align: center;
   background-color: rgba(108, 117, 125, 0.2);
   padding: 0.5em;
+}
+
+.state {
+  cursor: pointer;
 }
