@@ -1,4 +1,4 @@
-const getTotalCount = function (data, key) {
+const getTotalCount = function (data) {
   return data.reduce(
     (total, state) => {
       state.districtData.forEach((dist) => {
@@ -42,7 +42,7 @@ const drawTotalStats = function (data, state = 'Telangana') {
     confirmedDelta,
     recoveredDelta,
     deceasedDelta
-  } = getTotalCount( data, 'confirmed' );
+  } = getTotalCount( data);
   const total = document.querySelector('#india-total');
   total.innerHTML = generateLabels('Confirmed', confirmedDelta, confirmed);
   total.innerHTML += generateLabels('Active', 0, active);
@@ -103,6 +103,10 @@ const generateDistrict = function(district, zones) {
     `
 };
 
+const descend = (a, b) => {
+  return a.confirmed > b.confirmed ? -1 : a.confirmed < b.confirmed ? 1 : 0;
+};
+
 const drawDistricts = function(data, zones, state) {
   const states = Array.from(document.querySelectorAll('.state-info'));
   states.forEach(state => state.classList.add('hide'));
@@ -118,7 +122,8 @@ const drawDistricts = function(data, zones, state) {
       <th class="recovered-text">Rcvrd</th>
     </thead>
     <tbody>`
-  html += districts.map(district => generateDistrict(district, zones)).join('');
+  console.log(districts)
+  html += districts.sort(descend).map(district => generateDistrict(district, zones)).join('');
   html += '</tbody></table>';
   elem.classList.remove('hide');
   elem.innerHTML = html;
