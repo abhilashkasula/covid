@@ -74,13 +74,13 @@ const generateStates = function(state) {
         <td class="confirmed-text value"><span class="delta">${getDelta(cd)} </span>${c}</td>
       </tr>
       <tr>
-      <td class="active-text value"><span class="delta">${getDelta(ad)} </span>12</td>
+      <td class="active-text value"><span class="delta">${getDelta(ad)} </span>${a}</td>
       </tr>
       <tr>
-      <td class="deceased-text value"><span class="delta">[+12] </span>12</td>
+      <td class="deceased-text value"><span class="delta">${getDelta(dd)} </span>${d}</td>
       </tr>
       <tr>
-      <td class="recovered-text value"><span class="delta">[+12] </span>12</td>
+      <td class="recovered-text value"><span class="delta">${getDelta(rd)} </span>${r}</td>
       </tr>
     </table>
   </div>
