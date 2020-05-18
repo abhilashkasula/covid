@@ -152,6 +152,8 @@ const addListeners = function(data, zones) {
 
   document.querySelector('#search').addEventListener('input', () => {
     const states = Array.from(document.querySelectorAll('.state'));
+    const stateInfos = Array.from(document.querySelectorAll('.state-info'));
+    stateInfos.forEach(s => s.innerHTML = '');
     const text = event.target.value;
     states.forEach(s => s.classList.add('hide'));
     const regEx = new RegExp(text, 'i');
