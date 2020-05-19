@@ -135,7 +135,7 @@ const drawStates = function(data, zones) {
   document.querySelector('#states').innerHTML = html;
 };
 
-const showDistricts = function(state) {
+const toggleDistricts = function(state) {
   state = state.replace(/ /g, '-');
   const states = Array.from(document.querySelectorAll('.state-info'));
   const otherStates = states.filter(s => s.id !== `state-${state}`)
@@ -152,7 +152,7 @@ const addListeners = function() {
   Array.from(document.querySelectorAll('.state')).forEach(s => {
     s.addEventListener('click', (event) => {
       const name = event.target.children[0].innerText;
-      showDistricts(name);
+      toggleDistricts(name);
     });
   });
 
