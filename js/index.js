@@ -91,7 +91,7 @@ const generateStates = function(state) {
 
 const generateDistrict = function(district, zones) {
   const dist = zones.find(z => z.district ===district.district);
-  const zone = dist ? dist.zone : 'Unknown';
+  const zone = (dist ? dist.zone : 'Unknown') || 'Unknown';
   return `
     <tr>
     <td class="district ${zone}-zone">${district.district}</td>
