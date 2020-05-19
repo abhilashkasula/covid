@@ -65,7 +65,7 @@ const getStateCount = function(districts) {
 
 const getDelta = (n) => n ? `↑${n}` : '';
 
-const generateStates = function(state) {
+const generateStates = function(state, zones) {
   const {c, cd, a, ad, d, dd, r, rd} = getStateCount(state.districtData);
   return `
   <div class="state">
@@ -85,7 +85,9 @@ const generateStates = function(state) {
       </tr>
     </table>
   </div>
-  <div class="state-info hide" id="state-${state.state.replace(/ /g, '-')}"></div>
+  <div class="state-info hide" id="state-${state.state.replace(/ /g, '-')}">
+    ${drawDistricts(state.districtData, zones)}
+  </div>
 `
 };
 
@@ -107,11 +109,7 @@ const descend = (a, b) => {
   return a.confirmed > b.confirmed ? -1 : a.confirmed < b.confirmed ? 1 : 0;
 };
 
-const drawDistricts = function(data, zones, state) {
-  const states = Array.from(document.querySelectorAll('.state-info'));
-  states.forEach(state => state.classList.add('hide'));
-  const elem = document.querySelector(`#state-${state.replace(/ /g, '-')}`);
-  const districts = data.find(s => s.state === state).districtData;
+const drawDistricts = function(districts, zones) {
   let html = `
   <table>
     <thead>
@@ -123,9 +121,7 @@ const drawDistricts = function(data, zones, state) {
     </thead>
     <tbody>`
   html += districts.sort(descend).map(district => generateDistrict(district, zones)).join('');
-  html += '</tbody></table>';
-  elem.classList.remove('hide');
-  elem.innerHTML = html;
+  return html + '</tbody></table>';
 };
 
 const sortOnConfirmedCases = (a, b) => {
@@ -134,16 +130,29 @@ const sortOnConfirmedCases = (a, b) => {
   return confirmedA > confirmedB ? -1 : confirmedA < confirmedB ? 1 : 0;
 };
 
-const drawStates = function(data) {
-  const html = data.sort(sortOnConfirmedCases).map(generateStates).join('');
+const drawStates = function(data, zones) {
+  const html = data.sort(sortOnConfirmedCases).map(d => generateStates(d, zones)).join('');
   document.querySelector('#states').innerHTML = html;
 };
 
-const addListeners = function(data, zones) {
+const showDistricts = function(state) {
+  state = state.replace(/ /g, '-');
+  const states = Array.from(document.querySelectorAll('.state-info'));
+  const otherStates = states.filter(s => s.id !== `state-${state}`)
+  otherStates.forEach(s => s.classList.add('hide'));
+  const container = document.querySelector(`#state-${state}`);
+  if(container.classList.contains('hide')) {
+    container.classList.remove('hide');
+    return;
+  }
+  container.classList.add('hide');
+};
+
+const addListeners = function() {
   Array.from(document.querySelectorAll('.state')).forEach(s => {
     s.addEventListener('click', (event) => {
       const name = event.target.children[0].innerText;
-      drawDistricts(data, zones, name);
+      showDistricts(name);
     });
   });
 
@@ -161,8 +170,8 @@ const addListeners = function(data, zones) {
 
 const drawInfo = function(data, zones) {
   drawTotalStats(data);
-  drawStates(data);
-  addListeners(data, zones);
+  drawStates(data, zones);
+  addListeners();
 };
 
 const fetchZones = function(data) {
