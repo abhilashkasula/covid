@@ -118,7 +118,6 @@ body {
 
 table {
   text-align: end;
-  width: 30em;
 }
 
 .github {
@@ -165,6 +164,7 @@ footer > .github:hover {
 
 h2 {
   opacity: 0.78;
+  pointer-events: none;
 }
 
 .Orange-zone {
@@ -239,4 +239,8 @@ footer > .top:hover {
 
 footer > .link:hover {
   background-color: rgba(108, 117, 125, 0.4);
+}
+
+.state > table {
+  pointer-events: none;
 }

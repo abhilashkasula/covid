@@ -142,14 +142,7 @@ const drawStates = function(data) {
 const addListeners = function(data, zones) {
   Array.from(document.querySelectorAll('.state')).forEach(s => {
     s.addEventListener('click', (event) => {
-      let target = event.target;
-      if(event.target.classList[0] === 'value') {
-        target = event.target.parentElement.parentElement.parentElement.parentElement;
-      }
-      if(event.target.classList[0] === 'state-name') {
-        target = event.target.parentElement;
-      }
-      const name = target.children[0].innerText;
+      const name = event.target.children[0].innerText;
       drawDistricts(data, zones, name);
     });
   });
