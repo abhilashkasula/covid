@@ -244,3 +244,7 @@ footer > .link:hover {
 .state > table {
   pointer-events: none;
 }
+
+.state:hover {
+  background-color: rgba(108, 117, 125, 0.2);
+}
