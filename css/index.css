@@ -149,12 +149,12 @@ footer > .github:hover {
 #search {
   margin:0 auto;
   margin-top: 2em;
-  width: 25em;
   height: 2em;
   border-radius: 0.2em;
   padding: 1em 2em;
   outline: none;
   border: 1px solid #ccc;
+  padding-right: 10em;
 }
 
 .hide {
