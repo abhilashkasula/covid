@@ -25,7 +25,7 @@ const getTotalCount = function (data) {
 };
 
 const generateLabels = function(label, delta, cases) {
-  delta = delta ? `[+${delta}]` : '</br>';
+  delta = delta > 0 ? `[+${delta}]` : delta < 0 ? `[${delta}]`: '</br>';
   return `<div class="total ${label.toLowerCase()}">
   <h4 class="cases">${label}</h4>
   <h2 class="cases">${cases}</h2>
@@ -63,7 +63,7 @@ const getStateCount = function(districts) {
   }, {c:0, cd:0, a:0, ad:0, d:0, dd:0, r:0, rd:0})
 };
 
-const getDelta = (n) => n ? `↑${n}` : '';
+const getDelta = (n) =>  n > 0 ? `↑${Math.abs(n)}` : n < 0 ? `↓${Math.abs(n)}` : '';
 
 const generateStates = function(state, zones) {
   const {c, cd, a, ad, d, dd, r, rd} = getStateCount(state.districtData);
