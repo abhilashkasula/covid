@@ -175,7 +175,7 @@ const drawInfo = function(data, zones) {
 };
 
 const fetchZones = function(data) {
-  fetch('https://api.covid19india.org/zones.json')
+  fetch('https://data.covid19india.org/zones.json')
     .then(res => res.json())
     .then(zones => drawInfo(data, zones.zones));
 }
